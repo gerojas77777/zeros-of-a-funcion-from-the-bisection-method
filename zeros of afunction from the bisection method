@@ -1,0 +1,36 @@
+a = 1
+b = 5
+E = 1E-8 # Este es el margen de error máximo que buscamos.
+fa = a**3 - 3 * a**2 + 3 * a - 4
+fb = b**3 - 3 * b**2 + 3 * b - 4
+Err=abs(fb-0)
+
+if fa==0:
+  print(f"f(x) tiene un cero en x={a}")
+elif fb==0:
+  print(f"f(x) tiene un cero en x={b}")
+elif b>a:  
+  while Err>E:  
+    if fa==0:
+      print(f"f(x) tiene un cero en x={a}")
+      Err=abs(fa -0)
+    elif fa<0 and fb>0 or fa>0 and fb<0: 
+      b = b - (b - a) / 2
+      fb = b**3 - 3 * b**2 + 3 * b - 4
+      Err=abs(fb - 0)
+    elif fa>0 and fb>0 and fa>fb:
+      a1 = a  
+      a = b 
+      b = 2 * b - a1
+      fa = a**3 - 3 * a**2 + 3 * a - 4
+      fb = b**3 - 3 * b**2 + 3 * b - 4
+    elif fa<0 and fb<0 and fa<fb:
+      a1 = a  
+      a = b 
+      b = 2 * b - a1
+      fa = a**3 - 3 * a**2 + 3 * a - 4
+      fb = b**3 - 3 * b**2 + 3 * b - 4
+  else:
+    print(f"la función f(x) tiene un cero en x={b}")
+else:
+  print("escoge un valor de b que sea mayor que a")
